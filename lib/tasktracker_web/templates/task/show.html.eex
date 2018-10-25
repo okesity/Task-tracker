@@ -1,0 +1,65 @@
+<h1>Show Task</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @task.name %>
+  </li>
+
+  <li>
+    <strong>Desc:</strong>
+    <%= @task.desc %>
+  </li>
+
+  <li>
+    <strong>User assigned:</strong>
+    <%= @task.user.email %>
+  </li>
+
+
+  <li>
+    <strong>Work time:</strong>
+    <%= @task.work_time %>
+  </li>
+
+    <li>
+    <strong>Work time:</strong>
+    <%= @task.work_time %>
+  </li>
+    
+    <li>
+   <strong>Completed?:</strong>
+    <%= @task.completed %>
+  </li>
+  
+</ul>
+
+
+
+
+<span><%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></span>
+<span><%= link "Back", to: Routes.task_path(@conn, :index) %></span>
+
+<div>
+  <h1>Time Blocks</h1>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Start Time</th>
+      <th>End Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for timeblock <- @task.timeblocks do %>
+      <tr> 
+        <td><%= timeblock.start_time %></td>
+        <td><%= timeblock.end_time %></td>
+      </tr>
+
+    <% end %>
+  </tbody>
+
+
+
+</div>

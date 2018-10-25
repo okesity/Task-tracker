@@ -1,0 +1,57 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+ <div class="form-group">
+  <%= label f, :name %>
+  <%= text_input f, :name %>
+  <%= error_tag f, :name %>
+</div>
+
+ <div class="form-group">
+  <%= label f, :desc %>
+  <%= textarea f, :desc %>
+  <%= error_tag f, :desc %>
+</div>
+
+ <div class="form-group">
+  <%= label f, :user_id %>
+  <%= select(f,:user_id, Enum.map(@underlingslist, fn x -> {x.email, x.id} end)) %>
+  <%= error_tag f, :user_id %>
+ </div>
+
+ <%# <div class="form-group">
+  <%= label f, :work_time 
+  <%= number_input f, :work_time, step: "15" 
+  <%= error_tag f, :work_time 
+</div> %>
+
+ <div class="form-group">
+   <%= label f, :completed %>
+    <%= checkbox f, :completed %>
+    <%= error_tag f, :completed %>
+</div>
+
+
+<div>
+  <%= if @current_user do %>
+      <div id="time">
+      <h2>Add Time Block</h2>
+        Enter Start Time: <input type="time" id="start-time">
+        Enter End Time: <input type="time" id="end-time">
+
+        <button id="time-button"
+                data-user-id="<%= @current_user.id %>"
+                class="btn btn-secondary">Add Time!</button>
+      </div>
+    <% end %>
+</div>
+  
+
+  <div>
+    <%= submit "Save", class: "btn btn-primary"  %>
+  </div>
+<% end %>
