@@ -19,32 +19,41 @@ import "bootstrap";
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 
-
-// $(function(){
-//     $('#time-button').click((ev) =>{
-//         console.log("receive botton click");
-//         let start_time = $('#start-time').val();
-//         let end_time =$('#end-time').val();
-//         let user_id = $(ev.target).data('data-user-id');
-
-//         let text = JSON.stringify({
-//             timeblock:{
-//                 start_time: start_time,
-//                 end_time: end_time,
-//                 user_id: user_id,
-//             },
-//         })
-//     });
-
-//     $.ajax(time_block_path, {
-//         method: "post",
-//         dataType: "json",
-//         contentType: "application/json; charset=UTF-8",
-//         data: text,
-//         success: (resp) => {
-//             console.log("post json succeed!");
-//           //$('#rating-form').text(`(your rating: ${resp.data.stars})`);
-//         },
-//       });
-
-// });
+$(function () {
+  
+    $('#start-button').click((ev) => {
+      let current_time = new Date($.now())
+      console.log(current_time)
+      $('#start-button').addClass("disabled")
+      $('#stop-button').removeClass("disabled")
+      $('#stop-button').attr('time-start', current_time)
+    })
+  
+  
+    $('#stop-button').click((ev) => {
+      let end_time = new Date($.now())
+      $('#start-button').removeClass("disabled")
+      $('#stop-button').addClass("disabled")
+      let start_time = new Date($('#stop-button').attr('time-start'))
+      let task_id = $('#stop-button').attr('data-task-id')
+      let text = JSON.stringify({
+        time_block: {
+          end_time: end_time,
+          start_time: start_time,
+          task_id: parseInt(task_id),
+        },
+      });
+      console.log(text)
+  
+      $.ajax('ajax/timeblocks', {
+        method: "post",
+        dataType: "json",
+        contentType: "application/json; charset=UTF-8",
+        data: text,
+        success: (resp) => {
+          console.log("added ", text);
+        },
+      });
+    });
+  
+  })

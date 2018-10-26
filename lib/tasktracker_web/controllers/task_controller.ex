@@ -9,7 +9,14 @@ defmodule TasktrackerWeb.TaskController do
 
   def index(conn, _params) do
     tasks = Tasks.list_tasks()
-    render(conn, "index.html", tasks: tasks)
+    user = Users.get_user(get_session(conn, :user_id) || -1)
+    user_id = 
+    if is_nil(user) do
+      -1
+    else
+      user.id
+    end
+    render(conn, "index.html", tasks: tasks, user_id: user_id)
   end
 
   def new(conn, _params) do
