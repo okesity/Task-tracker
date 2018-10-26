@@ -36,21 +36,6 @@
 </div>
 
 
-<div>
-  <%= if @current_user do %>
-      <div id="time">
-      <h2>Add Time Block</h2>
-        Enter Start Time: <input type="time" id="start-time">
-        Enter End Time: <input type="time" id="end-time">
-
-        <button id="time-button"
-                data-user-id="<%= @current_user.id %>"
-                class="btn btn-secondary">Add Time!</button>
-      </div>
-    <% end %>
-</div>
-  
-
   <div>
     <%= submit "Save", class: "btn btn-primary"  %>
   </div>

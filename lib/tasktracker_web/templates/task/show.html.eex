@@ -16,17 +16,6 @@
     <strong>User assigned:</strong>
     <%= @task.user.email %>
   </li>
-
-
-  <li>
-    <strong>Work time:</strong>
-    <%= @task.work_time %>
-  </li>
-
-    <li>
-    <strong>Work time:</strong>
-    <%= @task.work_time %>
-  </li>
     
     <li>
    <strong>Completed?:</strong>
@@ -38,7 +27,6 @@
 
 
 
-<span><%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></span>
 <span><%= link "Back", to: Routes.task_path(@conn, :index) %></span>
 
 <div>
