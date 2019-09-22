@@ -1,7 +1,7 @@
 # Tasktracker
 
 ## Design Choices:
-
+.
 OverAll
 - The website contains two main pages, showing list of tasks and registered users
 - If one has not logged in, buttons that could make any change are hidden (i.e edit/delete)
